@@ -2,7 +2,7 @@
 
 #include <unordered_map>
 
-#include "SMove.hpp"
+#include "../SMove.hpp"
 
 class APiece {
 public:

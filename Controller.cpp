@@ -1,10 +1,10 @@
 #include "Controller.hpp"
-#include "Pawn.hpp"
-#include "Rook.hpp"
-#include "Knight.hpp"
-#include "Bishop.hpp"
-#include "Queen.hpp"
-#include "King.hpp"
+#include "Pieces/Pawn.hpp"
+#include "Pieces/Rook.hpp"
+#include "Pieces/Knight.hpp"
+#include "Pieces/Bishop.hpp"
+#include "Pieces/Queen.hpp"
+#include "Pieces/King.hpp"
 
 #include <cassert>
 #include <algorithm>
