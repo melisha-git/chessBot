@@ -5,6 +5,16 @@ project(ChessBot LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Настройка vcpkg
+if(DEFINED ENV{VCPKG_ROOT})
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+endif()
+
+set(CMAKE_PREFIX_PATH "/home/melisha/code/cppCode/chessBot/vcpkg/installed/x64-linux")
+
+find_package(GTest CONFIG REQUIRED)
+
+# Основные исходники
 set(SOURCES
     Controller.cpp
 
@@ -17,21 +27,19 @@ set(SOURCES
     Pieces/Rook.cpp
 )
 
-# Добавьте файлы заголовков (опционально для IDE)
-set(HEADERS
-    Controller.hpp
-    SMove.hpp
-
-    Pieces/APiece.hpp
-    Pieces/Bishop.hpp
-    Pieces/King.hpp
-    Pieces/Knight.hpp
-    Pieces/Pawn.hpp
-    Pieces/Queen.hpp
-    Pieces/Rook.hpp
+# Тестовые исходники
+set(TESTS_SOURCES
+    unittests/unit_example.cpp
+    unittests/BishopTests.cpp
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+# Основной исполняемый файл
+add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
 
-# # Укажите путь к заголовочным файлам
-# target_include_directories(${PROJECT_NAME} PRIVATE include)
+# Тесты
+add_executable(unittests unittests/main.cpp ${TESTS_SOURCES} ${SOURCES})
+target_link_libraries(unittests PRIVATE GTest::gtest GTest::gtest_main)
+
+# Регистрация тестов
+enable_testing()
+add_test(NAME AllTests COMMAND unittests)
