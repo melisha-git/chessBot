@@ -19,7 +19,7 @@ public:
         KING    
     };
     APiece(std::pair<short, short> currentPosition, EColor color, EType pieceType);
-    void move(const SMove& move);
+    bool move(const SMove& move);
     void kill();
     bool isDead() const;
     virtual bool isValidMove(const SMove& move) const = 0;

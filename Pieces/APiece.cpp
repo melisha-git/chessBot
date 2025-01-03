@@ -2,10 +2,12 @@
 
 APiece::APiece(std::pair<short, short> currentPosition, EColor color, EType pieceType) : currentPosition_(currentPosition), color_(color), type_(pieceType), isDead_(false) {}
 
-void APiece::move(const SMove& move) {
-    if (isValidMove(move)) {
-        currentPosition_ = move.source;
+bool APiece::move(const SMove& move) {
+    if (!isValidMove(move)) {
+        return false;
     }
+    currentPosition_ = move.source;
+    return true;
 }
 
 void APiece::kill() {

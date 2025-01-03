@@ -7,5 +7,10 @@ bool Pawn::isValidMove(const SMove& move) const {
     if (color_ == EColor::BLACK) {
         std::swap(up, down);
     }
-    return (up - down == 1 && (move.source.first - move.dest.first <= 1 && move.source.first - move.dest.first >= -1));
+    short maxMove = 1;
+    if ((color_ == APiece::EColor::BLACK && currentPosition_.second == 7) || color_ == APiece::EColor::WHITE && currentPosition_.second == 2) {
+        maxMove = 2;
+    }
+    return !move.isZeroMove(currentPosition_) 
+        && (up - down <= maxMove && (move.source.first - move.dest.first <= 1 && move.source.first - move.dest.first >= -1));
 }

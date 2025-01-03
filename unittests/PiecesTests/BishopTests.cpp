@@ -1,4 +1,4 @@
-#include "../Pieces/Bishop.hpp"
+#include "../../Pieces/Bishop.hpp"
 #include <gtest/gtest.h>
 
 TEST(BishopTests, IsValidMoveTest) {
@@ -6,9 +6,11 @@ TEST(BishopTests, IsValidMoveTest) {
     Bishop bishop(position, APiece::EColor::BLACK);
     SMove move;
     move.dest = position;
-    move.source.first = position.first - 3;
-    move.source.second = position.second - 3;
+    move.source.first = position.first - 2;
+    move.source.second = position.second - 2;
     ASSERT_TRUE(bishop.isValidMove(move));
+    bishop.move(move);
+    ASSERT_FALSE(bishop.isValidMove(move));
     move.source.second = 2;
     ASSERT_FALSE(bishop.isValidMove(move));
 }

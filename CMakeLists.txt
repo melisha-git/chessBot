@@ -30,7 +30,8 @@ set(SOURCES
 # Тестовые исходники
 set(TESTS_SOURCES
     unittests/unit_example.cpp
-    unittests/BishopTests.cpp
+    unittests/PiecesTests/BishopTests.cpp
+    unittests/SMoveTests.cpp
 )
 
 # Основной исполняемый файл
